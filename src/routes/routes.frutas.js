@@ -5,8 +5,7 @@ var Fruta = require('../models/frutas');
 
 router.get('/', async (req, res) => {
         const frutas = await Fruta.find();
-        console.log(frutas);
-        res.json('recivido');
+        res.json(frutas);
     
 
 });
