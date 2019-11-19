@@ -1,10 +1,12 @@
 const express = require('express');
 const morgan = require('morgan');
 const path = require ('path');
-
+const cors = require ('cors');
 const { mongoose } = require('./database');
 
 const app = express();
+
+app.use(cors());
 
 //configuraciones
 app.set('port', process.env.PORT || 3000);
