@@ -35,7 +35,7 @@ router.put('/:id',async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
 
-        await Fruta.findOneAndRemove(req.params.id);
+        await Fruta.findByIdAndDelete(req.params.id);
         res.json({status: 'fruta eliminada'});
 });
 
