@@ -30,7 +30,7 @@ function registrar (req, res){
 }
 
 function loguear (req, res){
-    User.findOne({email: req.body.email }, (err, user, password) => {
+    User.findOne({email: req.body.email, password: req.body.password }, (err, user) => {
 
     
     if(err) {res.status(500).send({message: 'error'})
