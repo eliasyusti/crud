@@ -15,7 +15,6 @@ router.route('/:id')
     .delete(deleteFruta)
     .put(updateFruta);
 
-<<<<<<< HEAD
 router.put('/:id',async (req, res) => {
 
         const { nombre, descripcion} = req.body;
@@ -29,8 +28,5 @@ router.delete('/:id', async (req, res) => {
         await Fruta.findByIdAndDelete(req.params.id);
         res.json({status: 'fruta eliminada'});
 });
-=======
-    
->>>>>>> feature/logincrud
 
     module.exports = router;
