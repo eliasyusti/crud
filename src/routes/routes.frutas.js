@@ -15,18 +15,6 @@ router.route('/:id')
     .delete(deleteFruta)
     .put(updateFruta);
 
-router.put('/:id',async (req, res) => {
 
-        const { nombre, descripcion} = req.body;
-        const newFruta = { nombre, descripcion};
-        await Fruta.findByIdAndUpdate(req.params.id, newFruta);
-        res.json({status: 'informacion actualizada'});
-});
-
-router.delete('/:id', async (req, res) => {
-
-        await Fruta.findByIdAndDelete(req.params.id);
-        res.json({status: 'fruta eliminada'});
-});
 
     module.exports = router;
