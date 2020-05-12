@@ -1,30 +1,21 @@
-const express = require('express');
-const router = express.Router();
+const { Router } = require('express')
+const router = Router();
+const IsAuth = require('../middlewares/midd')
+const {getFrutas, postFruta, getFruta, updateFruta, deleteFruta} = require('../controllers/frutas')
 
-var Fruta = require('../models/frutas');
 
-router.get('/', async (req, res) => {
-        const frutas = await Fruta.find();
-        res.json(frutas);
+
+router.route('/')
+    .get(IsAuth, getFrutas)
+    .post(postFruta);
     
 
-});
+router.route('/:id')
+    .get(getFruta)
+    .delete(deleteFruta)
+    .put(updateFruta);
 
-router.get('/:id', async (req, res) => {
-        const fruta = await Fruta.findById(req.params.id);
-        res.json(fruta);
-    
-
-});
-
-router.post('/', async (req, res) => {
-
-        const { nombre, descripcion } = req.body;
-        const fruta = new Fruta({nombre, descripcion});
-        await fruta.save();
-        res.json({status: 'tarea guardada'});
-});
-
+<<<<<<< HEAD
 router.put('/:id',async (req, res) => {
 
         const { nombre, descripcion} = req.body;
@@ -38,5 +29,8 @@ router.delete('/:id', async (req, res) => {
         await Fruta.findByIdAndDelete(req.params.id);
         res.json({status: 'fruta eliminada'});
 });
+=======
+    
+>>>>>>> feature/logincrud
 
-module.exports = router;
+    module.exports = router;
