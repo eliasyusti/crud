@@ -1,11 +1,19 @@
 'use strict'
 const frutasControl = {};
 const Fruta = require('../models/frutas');
+const User = require('../models/user')
 
-frutasControl.getFrutas = async (req, res) =>{
-        const frutas =  await Fruta.find();
-        res.json(frutas);
-}
+
+
+
+frutasControl.getFrutas = (req, res) => {
+        Fruta.find({user: req.params.id}, function(err,frutas) {
+            
+            res.json(frutas); 
+
+        }) .populate('user'); 
+    };
+    
 
 frutasControl.getFruta = async (req, res) =>{
     const fruta = await Fruta.findById(req.params.id);
@@ -13,8 +21,8 @@ frutasControl.getFruta = async (req, res) =>{
 }
 
 frutasControl.postFruta = async (req, res) =>{
-        const { nombre, descripcion } = req.body;
-        const fruta = new Fruta({nombre, descripcion});
+        const { nombre, descripcion} = req.body;
+        const fruta = new Fruta({nombre, descripcion, user: req.params.id});
         await fruta.save();
         res.json({status: 'tarea guardada'});
 }
