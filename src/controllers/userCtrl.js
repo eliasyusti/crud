@@ -11,7 +11,8 @@ function registrar (req, res){
     const user = new User({
 
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        rol: req.body.rol
     })
 
     user.save((err) => {
@@ -30,7 +31,7 @@ function registrar (req, res){
 }
 
 function loguear (req, res){
-    User.findOne({email: req.body.email }, (err, user, password) => {
+    User.findOne({email: req.body.email, password: req.body.password, rol: req.body.rol  }, (err, user) => {
 
     
     if(err) {res.status(500).send({message: 'error'})
@@ -45,9 +46,11 @@ function loguear (req, res){
 
     req.user = user
     res.status(200).send({
+
+        user: user,
         message: "te as logueado correctamente", 
         token: service.createToken(user)})
-
+        
      })
 
     

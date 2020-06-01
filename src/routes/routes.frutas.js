@@ -5,16 +5,18 @@ const {getFrutas, postFruta, getFruta, updateFruta, deleteFruta} = require('../c
 
 
 
-router.route('/')
+router.route('/:id')
     .get(IsAuth, getFrutas)
-    .post(postFruta);
     
+
+router.route('/create/:id')
+.post(postFruta);
 
 router.route('/:id')
     .get(getFruta)
     .delete(deleteFruta)
     .put(updateFruta);
 
-    
+
 
     module.exports = router;

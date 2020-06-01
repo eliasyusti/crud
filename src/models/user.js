@@ -7,6 +7,8 @@ const UsersShema = new Shema ({
 
     email:{ type: String, unique: true, lowercase: true},
 
+    rol:{type: String},
+
     password:{ type: String, select: false}
     
 });
@@ -30,4 +32,12 @@ UsersShema.pre('save', (next) =>{
 
 
 module.exports = mongoose.model('User', UsersShema);
+
+/*frutasControl.getFrutas = (req, res) => {
+       Fruta.findOne({_id: req.params.id})
+    .populate('User') // <- use the populate() function
+    .exec(function(err, fruta) {
+        res.json(fruta);
+    });
+    };*/
 
